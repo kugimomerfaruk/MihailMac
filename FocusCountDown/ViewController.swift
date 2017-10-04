@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var progressBarOutlet: UIProgressView!
     @IBOutlet weak var stepperOutlet: UIStepper!
     @IBOutlet weak var actionViewOutlet: UIView!
-    
+    @IBOutlet weak var touchTheScreenLabel: UILabel!
     
     @IBAction func stepperAction(_ sender: UIStepper) {
         
@@ -28,15 +28,19 @@ class ViewController: UIViewController {
         print(second)
         print(stepperOutlet.value)
         progressBarOutlet.progress = 1
+        progressBarOutlet.progressTintColor = UIColor(colorLiteralRed: 253/255.0, green: 111/255.0, blue: 113/255.0, alpha: 1)
         
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //print("Ekrana Dokundun")
+        progressBarOutlet.progressTintColor = UIColor.white
+        progressBarOutlet.backgroundColor = UIColor.clear
         view.backgroundColor = UIColor(displayP3Red: 249/255.0, green: 150/255.0, blue: 123/255.0, alpha: 1)
         actionViewOutlet.isHidden = true
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(ViewController.timerFunc)), userInfo: nil, repeats: true)
         circleViewContainer.isHidden = false
+        countDownLabel.textColor = UIColor(colorLiteralRed: 50/255.0, green: 60/255.0, blue: 76/255.0, alpha: 1)
         
         
     }
@@ -45,9 +49,10 @@ class ViewController: UIViewController {
         print("Elini Çektin")
         timer.invalidate()
         actionViewOutlet.isHidden = false
-        view.backgroundColor = UIColor(colorLiteralRed: 236/255.0, green: 240/255.0, blue: 241/255.0, alpha: 1)
+        view.backgroundColor = UIColor(colorLiteralRed: 50/255.0, green: 60/255.0, blue: 76/255.0, alpha: 1)
         circleViewContainer.isHidden = true
         stepperOutlet.value = Double(countDownLabel.text!)!
+        countDownLabel.textColor = UIColor.white
         
         
     }
@@ -84,8 +89,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         countDownLabel.text = String(second)
-        view.backgroundColor = UIColor(colorLiteralRed: 235/255.0, green: 239/255.0, blue: 243/255.0, alpha: 1)
+        view.backgroundColor = UIColor(colorLiteralRed: 50/255.0, green: 60/255.0, blue: 76/255.0, alpha: 1)
         circleViewContainer.isHidden = true
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
